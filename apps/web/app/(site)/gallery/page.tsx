@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Photos from North Valley Tavern in Olyphant, PA. See our atmosphere, drinks, and more.",
   alternates: {
-    canonical: 'https://northvalleytavern.com/gallery/',
+    canonical: 'https://northvalleytavern.com/gallery',
   },
 };
 

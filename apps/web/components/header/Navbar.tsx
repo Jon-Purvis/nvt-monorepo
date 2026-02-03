@@ -3,10 +3,10 @@ import MobileNav from "./MobileNav";
 
 const navLinks = [
   { name: "Welcome", href: "/" },
-  { name: "Menu", href: "/menu/" },
-  { name: "Gallery", href: "/gallery/" },
-  { name: "About", href: "/about/" },
-  { name: "Contact", href: "/contact/" },
+  { name: "Menu", href: "/menu" },
+  { name: "Gallery", href: "/gallery" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {

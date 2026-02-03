@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "About Us",
   description: "Learn about North Valley Tavern, your neighborhood bar in Olyphant, Pennsylvania.",
   alternates: {
-    canonical: 'https://northvalleytavern.com/about/',
+    canonical: 'https://northvalleytavern.com/about',
   },
 };
 

@@ -13,7 +13,7 @@ export default function Home() {
       title="North Valley Tavern"
       message="Coming Soon!"
       buttonText="View our Menu!"
-      buttonHref="/menu/"
+      buttonHref="/menu"
     />
   );
 }

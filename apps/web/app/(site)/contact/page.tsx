@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     `Get in touch with ${siteConfig.name}. Find our hours, location, and contact info in ${siteConfig.address.city}, ${siteConfig.address.state}.`,
   alternates: {
-    canonical: 'https://northvalleytavern.com/contact/',
+    canonical: 'https://northvalleytavern.com/contact',
   },
 };
 
