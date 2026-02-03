@@ -1,43 +1,43 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://northvalleytavern.com"),
   title: {
-    default: "North Valley Tavern | Olyphant, PA",
-    template: "%s | North Valley Tavern",
+    default: `${siteConfig.name} | ${siteConfig.address.city}, ${siteConfig.address.state}`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Local bar serving craft beer, cocktails, and food in Olyphant, Pennsylvania.",
+  description: `Local bar serving craft beer, cocktails, and food in ${siteConfig.address.city}, Pennsylvania.`,
   openGraph: {
-    title: "North Valley Tavern",
-    description: "Your neighborhood spot in Olyphant, PA",
-    url: "https://northvalleytavern.com/",
-    siteName: "North Valley Tavern",
+    title: siteConfig.name,
+    description: `Your neighborhood spot in ${siteConfig.address.city}, ${siteConfig.address.state}`,
+    url: "https://northvalleytavern.com",
+    siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
     images: ["/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "North Valley Tavern",
-    description: "Your neighborhood spot in Olyphant, PA",
+    title: siteConfig.name,
+    description: `Your neighborhood spot in ${siteConfig.address.city}, ${siteConfig.address.state}`,
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BarOrPub",
-  name: "North Valley Tavern",
+  name: siteConfig.name,
   image: "https://northvalleytavern.com/og-image.jpg",
-  url: "https://northvalleytavern.com/",
-  telephone: "+1-570-901-0688",
+  url: "https://northvalleytavern.com",
+  telephone: siteConfig.phone.href.replace("tel:", ""),
   address: {
     "@type": "PostalAddress",
-    streetAddress: "901 N Valley Ave",
-    addressLocality: "Olyphant",
-    addressRegion: "PA",
-    postalCode: "18447",
+    streetAddress: siteConfig.address.street,
+    addressLocality: siteConfig.address.city,
+    addressRegion: siteConfig.address.state,
+    postalCode: siteConfig.address.zip,
     addressCountry: "US",
   },
   openingHoursSpecification: [

@@ -5,16 +5,16 @@
 
   --color-background: hsl(150 8% 8%);
   --color-foreground: hsl(40 20% 92%);
-  
+
   --color-card: hsl(150 10% 12%);
   --color-card-foreground: hsl(40 20% 92%);
-  
+
   --color-muted: hsl(150 8% 18%);
   --color-muted-foreground: hsl(40 10% 60%);
-  
+
   --color-primary: hsl(150 45% 28%);
   --color-primary-foreground: hsl(40 25% 95%);
-  
+
   --color-secondary: hsl(120 25% 45%);
   --color-secondary-foreground: hsl(40 25% 95%);
 
@@ -32,18 +32,6 @@ html {
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
-}
-
-/* Only apply hover effects on devices that support hover (not touch) */
-@media (hover: hover) {
-  .menu-card:hover {
-    border-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
-    background-color: color-mix(in srgb, var(--color-card) 80%, transparent);
-  }
-
-  .menu-card:hover .menu-card-title {
-    color: var(--color-primary);
-  }
 }
 
 /* Hide scrollbar but allow scrolling */

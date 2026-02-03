@@ -3,11 +3,16 @@
 import { useState } from "react";
 import Button from "@/components/ui/Button";
 
+type FormStatus = "idle" | "sending" | "sent" | "error";
+
 interface FormData {
   name: string;
   email: string;
   message: string;
 }
+
+const inputStyles =
+  "w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -15,7 +20,7 @@ export default function ContactForm() {
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<FormStatus>("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,10 +51,8 @@ export default function ContactForm() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   if (status === "sent") {
@@ -87,7 +90,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form method="POST" onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
           Name
@@ -99,7 +102,7 @@ export default function ContactForm() {
           required
           value={formData.name}
           onChange={handleChange}
-          className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+          className={inputStyles}
           placeholder="Your name"
         />
       </div>
@@ -115,7 +118,7 @@ export default function ContactForm() {
           required
           value={formData.email}
           onChange={handleChange}
-          className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+          className={inputStyles}
           placeholder="your@email.com"
         />
       </div>
@@ -131,7 +134,7 @@ export default function ContactForm() {
           rows={5}
           value={formData.message}
           onChange={handleChange}
-          className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
+          className={`${inputStyles} resize-none`}
           placeholder="How can we help you?"
         />
       </div>
