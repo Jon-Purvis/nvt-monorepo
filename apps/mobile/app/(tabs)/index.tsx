@@ -4,6 +4,7 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 // Uncomment after Convex is set up:
 // import { useQuery } from "convex/react";
@@ -12,6 +13,10 @@ import {
 export default function InventoryScreen() {
   // Uncomment after Convex is set up:
   // const items = useQuery(api.inventory.list, {});
+
+  const handleAddItem = () => {
+    Alert.alert("Coming Soon", "Add Item will be available in a future update.");
+  };
 
   // Placeholder data
   const items = [
@@ -35,7 +40,7 @@ export default function InventoryScreen() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Inventory</Text>
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity style={styles.addButton} onPress={handleAddItem}>
           <Text style={styles.addButtonText}>+ Add Item</Text>
         </TouchableOpacity>
       </View>

@@ -4,9 +4,13 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 
 export default function LowStockScreen() {
+  const handleUpdateCount = (itemName: string) => {
+    Alert.alert("Coming Soon", `Update count for ${itemName} will be available in a future update.`);
+  };
   // Placeholder data - uncomment Convex after setup:
   // import { useQuery } from "convex/react";
   // const lowStockItems = useQuery(api.inventory.getLowStock, {});
@@ -44,7 +48,7 @@ export default function LowStockScreen() {
                 Min: {item.minQuantity} {item.unit}
               </Text>
             </View>
-            <TouchableOpacity style={styles.reorderButton}>
+            <TouchableOpacity style={styles.reorderButton} onPress={() => handleUpdateCount(item.name)}>
               <Text style={styles.reorderText}>Update Count</Text>
             </TouchableOpacity>
           </TouchableOpacity>
