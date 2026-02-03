@@ -14,10 +14,11 @@ export const list = query({
     ),
   },
   handler: async (ctx, args) => {
-    if (args.category) {
+    const category = args.category;
+    if (category) {
       return await ctx.db
         .query("inventoryItems")
-        .withIndex("by_category", (q) => q.eq("category", args.category))
+        .withIndex("by_category", (q) => q.eq("category", category))
         .collect();
     }
     return await ctx.db.query("inventoryItems").collect();
