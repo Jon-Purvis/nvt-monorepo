@@ -30,6 +30,12 @@ export const create = mutation({
     ),
   },
   handler: async (ctx, args) => {
+    // Basic email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(args.email)) {
+      throw new Error("Invalid email format");
+    }
+
     const existing = await ctx.db
       .query("users")
       .withIndex("by_email", (q) => q.eq("email", args.email))

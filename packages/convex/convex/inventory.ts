@@ -17,7 +17,7 @@ export const list = query({
     if (args.category) {
       return await ctx.db
         .query("inventoryItems")
-        .withIndex("by_category", (q) => q.eq("category", args.category!))
+        .withIndex("by_category", (q) => q.eq("category", args.category))
         .collect();
     }
     return await ctx.db.query("inventoryItems").collect();
@@ -57,6 +57,12 @@ export const create = mutation({
     notes: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    if (args.quantity < 0) {
+      throw new Error("Quantity cannot be negative");
+    }
+    if (args.minQuantity < 0) {
+      throw new Error("Minimum quantity cannot be negative");
+    }
     return await ctx.db.insert("inventoryItems", {
       ...args,
       lastUpdated: Date.now(),
@@ -72,6 +78,9 @@ export const updateQuantity = mutation({
     notes: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    if (args.newQuantity < 0) {
+      throw new Error("Quantity cannot be negative");
+    }
     const item = await ctx.db.get(args.id);
     if (!item) throw new Error("Item not found");
 
@@ -126,6 +135,15 @@ export const update = mutation({
 export const remove = mutation({
   args: { id: v.id("inventoryItems") },
   handler: async (ctx, args) => {
+    // Delete related inventory count records
+    const counts = await ctx.db
+      .query("inventoryCounts")
+      .withIndex("by_item", (q) => q.eq("itemId", args.id))
+      .collect();
+    for (const count of counts) {
+      await ctx.db.delete(count._id);
+    }
+    // Delete the item
     await ctx.db.delete(args.id);
   },
 });
