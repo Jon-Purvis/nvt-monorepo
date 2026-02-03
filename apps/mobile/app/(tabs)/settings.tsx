@@ -1,9 +1,13 @@
-import { View, Text, StyleSheet, TouchableOpacity, Switch } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Switch, Alert } from "react-native";
 import { useState } from "react";
 
 export default function SettingsScreen() {
   // TODO: Persist notification preference to Convex
   const [notifications, setNotifications] = useState(true);
+
+  const showComingSoon = (feature: string) => {
+    Alert.alert("Coming Soon", `${feature} will be available in a future update.`);
+  };
 
   return (
     <View style={styles.container}>
@@ -26,23 +30,23 @@ export default function SettingsScreen() {
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Account</Text>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => showComingSoon("Profile")}>
           <Text style={styles.menuItemText}>👤 Profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => showComingSoon("Tavern Settings")}>
           <Text style={styles.menuItemText}>🏪 Tavern Settings</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => showComingSoon("Team Members")}>
           <Text style={styles.menuItemText}>👥 Team Members</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>About</Text>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => showComingSoon("Privacy Policy")}>
           <Text style={styles.menuItemText}>📄 Privacy Policy</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => showComingSoon("Terms of Service")}>
           <Text style={styles.menuItemText}>📋 Terms of Service</Text>
         </TouchableOpacity>
         <View style={styles.versionInfo}>
