@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "NVT Inventory",
+    "slug": "nvt-inventory",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "nvt-inventory",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#1a1a2e"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nvt.inventory"
+    },
+    "android": {
+      "package": "com.nvt.inventory"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
