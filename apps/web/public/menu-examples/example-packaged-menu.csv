@@ -1,0 +1,36 @@
+Name,Package Type,Package Size (oz),Description,ABV,Menu Price,Override Price
+Bud Light,Bottle,12,,4.2%,$4.00,$4.00
+Budweiser,Bottle,12,,5%,$4.00,$4.00
+Coors Banquet,Bottle,12,,5%,$3.00,$4.00
+Coors Light,Bottle,12,,4.2%,$3.00,$4.00
+Corona,Bottle,12,,4.6%,$4.00,$5.00
+Corona Premier,Bottle,12,,4%,$3.00,$5.00
+Franziskaner Hefe,Bottle,12,,5%,$5.00,$6.00
+Heineken,Bottle,12,,5%,$4.00,$5.00
+Hoegarden,Bottle,12,,4.9%,$5.00,$6.00
+Kronenbourg Blanc,Bottle,12,,5%,$6.00,$6.00
+Labatt Blue,Bottle,12,,4.7%,$3.00,$4.00
+Michelob Ultra,Bottle,12,,4.2%,$4.00,$5.00
+Miller High Life,Bottle,12,,4.6%,$3.00,$4.00
+Miller Lite,Bottle,12,,4.2%,$4.00,$5.00
+Modelo Especial,Bottle,12,,4.4%,$4.00,$5.00
+Modelo Negra,Bottle,12,,5.4%,$4.00,$5.00
+Non-Alcoholic Corona,Bottle,12,,0%,$5.00,$5.00
+Saison Dupont,Bottle,12,,6.5%,$12.00,$13.00
+Sam Adams White Ale,Bottle,12,,5%,$5.00,$6.00
+Sapporo,Bottle,12,,4.9%,$4.00,$6.00
+Stella Artois,Bottle,12,,5%,$4.00,$5.00
+Yuengling Flight,Bottle,12,,4.2%,$3.00,$4.00
+Yuengling Lager,Bottle,12,,4.5%,$4.00,$4.00
+Athletic NA Free Wave,Can,12,,0%,,$5.00
+Awestruck Apple & Pear Cider,Can,16,,6.8%,$8.00,$8.00
+Black Cherry Soda,Can,12,,0%,$8.00,$5.00
+Black Cherry White Claw,Can,12,,5%,$5.00,$5.00
+Guinness,Can,14.09,,4.2%,$6.00,$6.00
+Lime White Claw,Can,12,,5%,$5.00,$5.00
+Miller Lite,Can,12,,4.2%,$3.00,$4.00
+Non-Alcoholic Guinness,Can,14.09,,0.5%,$6.00,$6.00
+Pabst,Can,16,,4.7%,$3.00,$4.00
+Raspberry White Claw,Can,12,,5%,$5.00,$5.00
+Red Bull,Can,8.4,,0%,$6.00,$5.00
+Sugar Free Red Bull,Can,8.4,,0%,$6.00,$5.00

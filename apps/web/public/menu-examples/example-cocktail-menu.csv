@@ -1,0 +1,3 @@
+Status,Drink Type,Name,Description,Menu Price,Override Price
+Active,Cocktail,Classic Margarita,"Tequila, Triple Sec, Fresh Lime Juice, and Simple Syrup",$12.00,
+Active,Mocktail,Virgin Mojito,"Lime Juice, Simple Syrup, Mint Leaves, Soda Water",$9.00,
