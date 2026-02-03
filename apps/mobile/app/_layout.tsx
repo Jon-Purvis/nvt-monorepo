@@ -3,9 +3,14 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-const convex = new ConvexReactClient(
-  process.env.EXPO_PUBLIC_CONVEX_URL || "https://your-deployment.convex.cloud"
-);
+const convexUrl = process.env.EXPO_PUBLIC_CONVEX_URL;
+if (!convexUrl) {
+  throw new Error(
+    "Missing EXPO_PUBLIC_CONVEX_URL environment variable. " +
+    "Run `npx convex dev` in packages/convex and add the URL to your .env file."
+  );
+}
+const convex = new ConvexReactClient(convexUrl);
 
 export default function RootLayout() {
   return (
