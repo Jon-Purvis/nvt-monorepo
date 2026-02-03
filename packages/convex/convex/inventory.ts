@@ -131,6 +131,10 @@ export const update = mutation({
       throw new Error("Cost cannot be negative");
     }
     const { id, ...updates } = args;
+    const item = await ctx.db.get(id);
+    if (!item) {
+      throw new Error("Item not found");
+    }
     const filtered = Object.fromEntries(
       Object.entries(updates).filter(([_, v]) => v !== undefined)
     );
