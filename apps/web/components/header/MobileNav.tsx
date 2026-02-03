@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NavLink from "./NavLink";
 import HamburgerButton from "../ui/HamburgerButton";
 
@@ -11,6 +11,18 @@ interface MobileNavProps {
 export default function MobileNav({ links }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+
+  // Close menu on Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && open) {
+        handleClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [open]);
 
   return (
     <div className="sm:hidden relative z-50">

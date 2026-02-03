@@ -9,6 +9,7 @@ export default function Logo() {
         alt="North Valley Tavern"
         height={100}
         width={100}
+        priority
         className="h-12 w-auto"
       />
 

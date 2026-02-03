@@ -9,6 +9,7 @@ export default function HamburgerButton({ open, onClick }: HamburgerButtonProps)
   return (
     <button
       aria-label="Toggle menu"
+      aria-expanded={open}
       onClick={onClick}
       className="p-3 focus:outline-none"
     >
