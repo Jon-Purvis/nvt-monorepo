@@ -148,6 +148,10 @@ export const update = mutation({
 export const remove = mutation({
   args: { id: v.id("inventoryItems") },
   handler: async (ctx, args) => {
+    const item = await ctx.db.get(args.id);
+    if (!item) {
+      throw new Error("Item not found");
+    }
     // Delete related inventory count records
     const counts = await ctx.db
       .query("inventoryCounts")
