@@ -19,7 +19,14 @@ export default function NavLink({
   activeClassName,
 }: NavLinkProps) {
   const pathname = usePathname();
-  const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+  
+  // Normalize paths by removing trailing slashes for comparison
+  const normalizedHref = href.replace(/\/$/, "") || "/";
+  const normalizedPathname = pathname.replace(/\/$/, "") || "/";
+  
+  const isActive =
+    normalizedPathname === normalizedHref ||
+    (normalizedHref !== "/" && normalizedPathname.startsWith(normalizedHref + "/"));
 
   return (
     <Link
