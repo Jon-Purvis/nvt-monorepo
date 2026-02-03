@@ -6,6 +6,11 @@ import { Resend } from "resend";
 // =============================================================================
 // This API route handles contact form submissions using Resend.
 
+// Input validation limits
+const MAX_NAME_LENGTH = 100;
+const MAX_EMAIL_LENGTH = 254;
+const MAX_MESSAGE_LENGTH = 5000;
+
 // Initialize lazily to avoid build-time errors when API key is not set
 function getResend() {
   const apiKey = process.env.RESEND_API_KEY;
@@ -13,6 +18,16 @@ function getResend() {
     throw new Error("RESEND_API_KEY is not configured");
   }
   return new Resend(apiKey);
+}
+
+// Sanitize user input for HTML to prevent XSS
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 interface ContactFormData {
@@ -26,9 +41,9 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     
     const data: ContactFormData = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      message: formData.get("message") as string,
+      name: (formData.get("name") as string || "").slice(0, MAX_NAME_LENGTH),
+      email: (formData.get("email") as string || "").slice(0, MAX_EMAIL_LENGTH),
+      message: (formData.get("message") as string || "").slice(0, MAX_MESSAGE_LENGTH),
     };
 
     // Validate required fields
@@ -48,28 +63,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send email via Resend
+    // Send email via Resend (with sanitized HTML)
     const resend = getResend();
-    const emailResult = await resend.emails.send({
+    await resend.emails.send({
       from: "contact@northvalleytavern.com",
       to: process.env.CONTACT_EMAIL || "admin@northvalleytavern.com",
-      subject: `New Contact Form Submission from ${data.name}`,
+      subject: `New Contact Form Submission from ${escapeHtml(data.name)}`,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${data.name}</p>
-        <p><strong>Email:</strong> ${data.email}</p>
+        <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
         <p><strong>Message:</strong></p>
-        <p>${data.message.replace(/\n/g, "<br>")}</p>
+        <p>${escapeHtml(data.message).replace(/\n/g, "<br>")}</p>
       `,
-    });
-
-    // Log the submission for debugging
-    console.log("Contact form submission:", {
-      name: data.name,
-      email: data.email,
-      message: data.message,
-      timestamp: new Date().toISOString(),
-      resendResult: emailResult,
     });
 
     // Return success response
