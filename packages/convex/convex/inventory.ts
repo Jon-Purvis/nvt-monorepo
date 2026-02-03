@@ -63,6 +63,9 @@ export const create = mutation({
     if (args.minQuantity < 0) {
       throw new Error("Minimum quantity cannot be negative");
     }
+    if (args.cost !== undefined && args.cost < 0) {
+      throw new Error("Cost cannot be negative");
+    }
     return await ctx.db.insert("inventoryItems", {
       ...args,
       lastUpdated: Date.now(),
@@ -121,6 +124,12 @@ export const update = mutation({
     notes: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    if (args.minQuantity !== undefined && args.minQuantity < 0) {
+      throw new Error("Minimum quantity cannot be negative");
+    }
+    if (args.cost !== undefined && args.cost < 0) {
+      throw new Error("Cost cannot be negative");
+    }
     const { id, ...updates } = args;
     const filtered = Object.fromEntries(
       Object.entries(updates).filter(([_, v]) => v !== undefined)

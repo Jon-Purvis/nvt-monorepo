@@ -63,6 +63,10 @@ export const updateRole = mutation({
     ),
   },
   handler: async (ctx, args) => {
+    const user = await ctx.db.get(args.id);
+    if (!user) {
+      throw new Error("User not found");
+    }
     await ctx.db.patch(args.id, { role: args.role });
   },
 });
@@ -70,6 +74,10 @@ export const updateRole = mutation({
 export const remove = mutation({
   args: { id: v.id("users") },
   handler: async (ctx, args) => {
+    const user = await ctx.db.get(args.id);
+    if (!user) {
+      throw new Error("User not found");
+    }
     await ctx.db.delete(args.id);
   },
 });
