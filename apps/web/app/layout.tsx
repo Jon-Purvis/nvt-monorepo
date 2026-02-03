@@ -1,31 +1,77 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-});
+import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  title: "NVT Monorepo",
-  description: "North Valley Tavern Monorepo",
+  metadataBase: new URL("https://northvalleytavern.com"),
+  title: {
+    default: "North Valley Tavern | Olyphant, PA",
+    template: "%s | North Valley Tavern",
+  },
+  description:
+    "Local bar serving craft beer, cocktails, and food in Olyphant, Pennsylvania.",
+  openGraph: {
+    title: "North Valley Tavern",
+    description: "Your neighborhood spot in Olyphant, PA",
+    url: "https://northvalleytavern.com/",
+    siteName: "North Valley Tavern",
+    locale: "en_US",
+    type: "website",
+    images: ["/og-image.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "North Valley Tavern",
+    description: "Your neighborhood spot in Olyphant, PA",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BarOrPub",
+  name: "North Valley Tavern",
+  image: "https://northvalleytavern.com/og-image.jpg",
+  url: "https://northvalleytavern.com/",
+  telephone: "+1-570-901-0688",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "901 N Valley Ave",
+    addressLocality: "Olyphant",
+    addressRegion: "PA",
+    postalCode: "18447",
+    addressCountry: "US",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Wednesday", "Thursday"],
+      opens: "16:00",
+      closes: "23:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Friday", "Saturday"],
+      opens: "16:00",
+      closes: "00:00",
+    },
+  ],
+  servesCuisine: "American",
+  priceRange: "$$",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>): React.JSX.Element {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
