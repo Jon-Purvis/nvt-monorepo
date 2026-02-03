@@ -2,8 +2,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Switch } from "react-native";
 import { useState } from "react";
 
 export default function SettingsScreen() {
+  // TODO: Persist notification preference to Convex
   const [notifications, setNotifications] = useState(true);
-  const [darkMode, setDarkMode] = useState(true);
 
   return (
     <View style={styles.container}>
@@ -18,19 +18,6 @@ export default function SettingsScreen() {
           <Switch
             value={notifications}
             onValueChange={setNotifications}
-            trackColor={{ false: "#333", true: "#e94560" }}
-            thumbColor="#fff"
-          />
-        </View>
-
-        <View style={styles.settingRow}>
-          <View>
-            <Text style={styles.settingLabel}>Dark Mode</Text>
-            <Text style={styles.settingDescription}>Use dark theme</Text>
-          </View>
-          <Switch
-            value={darkMode}
-            onValueChange={setDarkMode}
             trackColor={{ false: "#333", true: "#e94560" }}
             thumbColor="#fff"
           />
