@@ -5,7 +5,7 @@ interface HamburgerButtonProps {
   onClick: () => void;
 }
 
-export default function HamburgerButton({ open, onClick }: HamburgerButtonProps): React.JSX.Element {
+export default function HamburgerButton({ open, onClick }: HamburgerButtonProps) {
   return (
     <button
       aria-label="Toggle menu"

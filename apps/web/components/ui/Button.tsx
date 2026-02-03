@@ -1,12 +1,12 @@
 import Link from "next/link";
-import type { ButtonHTMLAttributes } from "react";
+import { ReactNode, ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary";
 
 interface ButtonProps {
   variant?: ButtonVariant;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   href?: string;
   external?: boolean;
@@ -34,7 +34,7 @@ export default function Button({
   type,
   disabled,
   onClick,
-}: ButtonProps): React.JSX.Element {
+}: ButtonProps) {
   const styles = cn(baseStyles, variantStyles[variant], className);
 
   // Link version

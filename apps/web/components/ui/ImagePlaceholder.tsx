@@ -13,7 +13,7 @@ interface ImagePlaceholderProps {
 export default function ImagePlaceholder({
   message = "Photo Coming Soon",
   className = "",
-}: ImagePlaceholderProps): React.JSX.Element {
+}: ImagePlaceholderProps) {
   return (
     <div
       className={`absolute inset-0 bg-gradient-to-br from-amber-900/20 via-card to-amber-800/10 flex flex-col items-center justify-center ${className}`}

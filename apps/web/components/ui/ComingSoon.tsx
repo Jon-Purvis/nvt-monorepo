@@ -14,7 +14,7 @@ export default function ComingSoon({
   message = "This page is under construction.",
   buttonText = "Return Home",
   buttonHref = "/",
-}: ComingSoonProps): React.JSX.Element {
+}: ComingSoonProps) {
   return (
     <div className="flex flex-1 items-center justify-center min-h-[calc(100vh-80px)] px-6">
       <div className="text-center max-w-lg mx-auto">

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import type { JSX } from "react";
 import ComingSoon from "@/components/ui/ComingSoon";
 
 export const metadata: Metadata = {
@@ -8,7 +7,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home(): JSX.Element {
+export default function Home() {
   return (
     <ComingSoon
       title="North Valley Tavern"
